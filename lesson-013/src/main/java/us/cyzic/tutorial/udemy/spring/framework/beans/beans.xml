@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="init" default-destroy-method="destroy">
+
+	<bean id="person"
+		class="us.cyzic.tutorial.udemy.spring.framework.Person"
+		init-method="onCreate" destroy-method="onDestroy"
+		factory-method="getInstance">
+		<constructor-arg value="777" name="id"></constructor-arg>
+		<constructor-arg value="Freddy" name="name"></constructor-arg>
+		<property name="taxId" value="999887777"></property>
+		<property name="address" ref="address"></property>
+	</bean>
+
+	<bean id="person2"
+		class="us.cyzic.tutorial.udemy.spring.framework.Person"
+		init-method="onCreate" destroy-method="onDestroy"
+		factory-method="createPerson" factory-bean="personFactory">
+		<constructor-arg value="654" name="id"></constructor-arg>
+		<constructor-arg value="Farkle" name="name"></constructor-arg>
+		<property name="taxId" value="999887777"></property>
+		<property name="address" ref="address"></property>
+	</bean>
+
+	<bean id="address"
+		class="us.cyzic.tutorial.udemy.spring.framework.Address">
+	<constructor-arg name="street" value="123 Main Street"></constructor-arg>
+	<constructor-arg name="postCode" value="80226"></constructor-arg>
+	</bean>
+	<bean id="personFactory"
+		class="us.cyzic.tutorial.udemy.spring.framework.PersonFactory">
+	</bean>
+</beans>
