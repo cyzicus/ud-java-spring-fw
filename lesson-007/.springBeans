@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>beans.xml</config>
+		<config>src/main/java/us/cyzic/tutorial/udemy/spring/framework/beans/beans.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
