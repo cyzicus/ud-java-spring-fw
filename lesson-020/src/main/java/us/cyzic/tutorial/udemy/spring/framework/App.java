@@ -11,7 +11,7 @@ public class App {
 		
 		Logger logger = (Logger)context.getBean("logger");
 		
-		logger.writeConsole("Should be displayed on cosole");
+		logger.writeConsole("Should be displayed in the console");
 		logger.writeFile("I want this line of text in a file");
 		
 		context.close();
