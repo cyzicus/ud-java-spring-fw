@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="init" default-destroy-method="destroy"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="jungle"
+		class="us.cyzic.tutorial.udemy.spring.framework.Jungle">
+	<property name="largest" ref="elephant"></property>
+	<property name="animals">
+		<list>
+			<ref bean="lion" />
+			<ref bean="tiger" />
+			<ref bean="elephant" />
+		</list>
+	</property>
+	</bean>
+
+	<bean id="lion"
+		class="us.cyzic.tutorial.udemy.spring.framework.Animal" p:name="Cowardly" p:type="Lion">
+	</bean>
+	
+	<bean id="elephant"
+		class="us.cyzic.tutorial.udemy.spring.framework.Animal" p:name="Babar" p:type="Elephant">
+	</bean>
+	
+	<bean id="tiger"
+		class="us.cyzic.tutorial.udemy.spring.framework.Animal" p:name="Tony" p:type="Tiger">
+	</bean>
+</beans>
