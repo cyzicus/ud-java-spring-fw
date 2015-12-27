@@ -14,17 +14,15 @@
 		</property>
 		<property name="animals">
 			<list>
-				<ref bean="lion" />
-				<ref bean="tiger" />
+				<bean id="lion" class="us.cyzic.tutorial.udemy.spring.framework.Animal"
+					p:name="Cowardly" p:type="Lion">
+				</bean>
+				<bean id="tiger" class="us.cyzic.tutorial.udemy.spring.framework.Animal"
+					p:name="Tony" p:type="Tiger">
+				</bean>
 			</list>
 		</property>
 	</bean>
 
-	<bean id="lion" class="us.cyzic.tutorial.udemy.spring.framework.Animal"
-		p:name="Cowardly" p:type="Lion">
-	</bean>
 
-	<bean id="tiger" class="us.cyzic.tutorial.udemy.spring.framework.Animal"
-		p:name="Tony" p:type="Tiger">
-	</bean>
 </beans>
