@@ -12,9 +12,17 @@
 	</context:component-scan>
 	<context:property-placeholder
 		location="us/cyzic/tutorial/udemy/spring/framework/properties/jdbc.properties" />
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+	<property name="url" value="${jdbc.url}"></property>
+	<property name="driverClassName" value="${jdbc.driver}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+	<property name="username" value="${jdbc.username}"></property>
+	</bean>
+	
 	<bean id="robot"
 		class="us.cyzic.tutorial.udemy.spring.framework.Robot">
-	<property name="id" value="${jdbc.user}"></property>
-	
 	</bean>
 </beans>
