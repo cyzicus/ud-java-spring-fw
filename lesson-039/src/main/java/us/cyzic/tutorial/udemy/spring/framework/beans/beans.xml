@@ -22,7 +22,5 @@
 	<property name="username" value="${jdbc.username}"></property>
 	</bean>
 	
-	<bean id="robot"
-		class="us.cyzic.tutorial.udemy.spring.framework.Robot">
-	</bean>
+	
 </beans>
