@@ -44,19 +44,24 @@ public class OffersDAO {
 			}
 		});
 	}
+
+	public boolean create(Offer offer) {
+		
+		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+		String sql = "insert into offers (name, text, email) values (:name, :text, :email)";
+		return jdbc.update(sql, params) == 1;
+	}
+	
+	public boolean update(Offer offer) {
+		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+		String sql = "update offers set name=:name, text=:text, email=:email where id=:id";
+		return jdbc.update(sql, params) == 1;
+	}
 	
 	public boolean delete(int id) {
 		MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 		return jdbc.update("delete from offers where id=:id", params) == 1;
 	}
 	
-	public boolean create(Offer offer) {
-		
-		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
-		
-		String sql = "insert into offers (name, text, email) values (:name, :text, :email)";
-		
-		return jdbc.update(sql, params) == 1;
-	}
 
 }

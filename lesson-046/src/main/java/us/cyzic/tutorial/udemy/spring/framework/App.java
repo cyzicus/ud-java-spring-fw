@@ -17,9 +17,9 @@ public class App {
 		
 		try {
 			
-			//Offer fred = new Offer("Fred", "fred@nowhere.com", "will code for food");
+			Offer fred = new Offer("Fred", "fred@nowhere.com", "will code for food");
 			
-			//offersDao.create(fred);
+			offersDao.create(fred);
 			
 			List<Offer> offers = offersDao.getOffers();
 
@@ -30,6 +30,15 @@ public class App {
 			
 			Offer offer = offersDao.getOffer(2);
 			System.out.println("Should be Mike: " + offer);
+			
+			offer.setEmail("newEmailAddress.com");
+			offer.setName("Jason");
+			offer.setText("just want to work for pivotal");
+			
+			offersDao.update(offer);
+			
+			offer = offersDao.getOffer(2);
+			System.out.println("Should now be Jason: " + offer);
 			
 		} catch (CannotGetJdbcConnectionException ex) {
 			System.out.println("Cannot connect to database");
