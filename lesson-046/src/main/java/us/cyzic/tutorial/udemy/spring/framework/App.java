@@ -16,6 +16,11 @@ public class App {
 		OffersDAO offersDao = (OffersDAO) context.getBean("offersDao");
 		
 		try {
+			
+			//Offer fred = new Offer("Fred", "fred@nowhere.com", "will code for food");
+			
+			//offersDao.create(fred);
+			
 			List<Offer> offers = offersDao.getOffers();
 
 			System.out.println("All offers:");
