@@ -17,9 +17,19 @@ public class App {
 		
 		try {
 			
-			Offer fred = new Offer("Fred", "fred@nowhere.com", "will code for food");
+			if(offersDao.delete(4) && offersDao.delete(8))
+			{
+				System.out.println("Offer deleted");
+			} else {
+				System.out.println("Error deleting offer");
+			}
 			
-			offersDao.create(fred);
+			Offer fred = new Offer("Fred", "fred@nowhere.com", "will code for food");
+			if(offersDao.create(fred)) {
+				System.out.println("Created offer: " + fred);
+			} else {
+				System.out.println("Error creating offer: " + fred);
+			}
 			
 			List<Offer> offers = offersDao.getOffers();
 
@@ -35,7 +45,11 @@ public class App {
 			offer.setName("Jason");
 			offer.setText("just want to work for pivotal");
 			
-			offersDao.update(offer);
+			if(offersDao.update(offer)) {
+				System.out.println("Updated offer: " + offer);
+			} else {
+				System.out.println("Error updating offer: " + offer);
+			}
 			
 			offer = offersDao.getOffer(2);
 			System.out.println("Should now be Jason: " + offer);
