@@ -1,5 +1,6 @@
 package us.cyzic.tutorial.udemy.spring.framework;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,12 +18,12 @@ public class App {
 		
 		try {
 			
-			if(offersDao.delete(4) && offersDao.delete(8))
-			{
-				System.out.println("Offer deleted");
-			} else {
-				System.out.println("Error deleting offer");
-			}
+//			if(offersDao.delete(4) && offersDao.delete(8))
+//			{
+//				System.out.println("Offer deleted");
+//			} else {
+//				System.out.println("Error deleting offer");
+//			}
 			
 			Offer fred = new Offer("Fred", "fred@nowhere.com", "will code for food");
 			if(offersDao.create(fred)) {
@@ -53,6 +54,17 @@ public class App {
 			
 			offer = offersDao.getOffer(2);
 			System.out.println("Should now be Jason: " + offer);
+			
+			List<Offer> bethAndMel = new ArrayList<Offer>();
+			
+			bethAndMel.add((new Offer("Beth", "beth@whatever.com", "PHP programmer for hire")));
+			bethAndMel.add((new Offer("Mel", "mel@whatever.com", "Another PHP programmer for hire")));
+			
+			if(offersDao.create(bethAndMel)) {
+				System.out.println("Successfully added Beth and Mel");
+			} else {
+				System.out.println("An error occurred adding Beth and Mel");
+			}
 			
 		} catch (CannotGetJdbcConnectionException ex) {
 			System.out.println("Cannot connect to database");

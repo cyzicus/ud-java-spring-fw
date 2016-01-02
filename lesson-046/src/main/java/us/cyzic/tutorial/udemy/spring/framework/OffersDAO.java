@@ -2,6 +2,7 @@ package us.cyzic.tutorial.udemy.spring.framework;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -12,6 +13,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Component;
 
 @Component("offersDao")
@@ -50,6 +53,22 @@ public class OffersDAO {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
 		String sql = "insert into offers (name, text, email) values (:name, :text, :email)";
 		return jdbc.update(sql, params) == 1;
+	}
+	
+	public boolean create(List<Offer> offers) {
+		
+		SqlParameterSource[] batchArgs = SqlParameterSourceUtils.createBatch(offers.toArray());
+		
+		String sql = "insert into offers (name, text, email) values (:name, :text, :email)";
+		int[] results = jdbc.batchUpdate(sql, batchArgs);
+		
+		int total = 0;
+		for(int row: results) {
+			total += row;
+		}
+		
+		return total == offers.size();
+		
 	}
 	
 	public boolean update(Offer offer) {
