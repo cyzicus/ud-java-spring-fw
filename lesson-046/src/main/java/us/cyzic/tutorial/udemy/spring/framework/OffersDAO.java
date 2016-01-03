@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component("offersDao")
 public class OffersDAO {
@@ -55,6 +56,7 @@ public class OffersDAO {
 		return jdbc.update(sql, params) == 1;
 	}
 	
+	@Transactional
 	public boolean create(List<Offer> offers) {
 		
 		SqlParameterSource[] batchArgs = SqlParameterSourceUtils.createBatch(offers.toArray());
